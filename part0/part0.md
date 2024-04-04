@@ -54,7 +54,7 @@ sequenceDiagram
     browser->>server: POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
     activate server
     server-->>browser: 201 status code
-    deativate server
+
 
 ```
 
