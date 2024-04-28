@@ -15,13 +15,12 @@ const [number, setNumber] = useState('')
 const [searchFilter, setSearchFilter] = useState('')
 const [filterResult, setFileterResult] = useState([])
 
-const onSearch = (e) => {
+ const onSearch = (e) => {
   setSearchFilter(e.target.value)
   const search = e.target.value
-  const result = persons.filter((person) => person.name.includes(search))
-  // console.log('result', result)
+  const result = persons.filter((person) => 
+  person.name.toLowerCase().includes(search.toLowerCase()))
   setFileterResult(result)
-  // console.log('filterResult',filterResult) 
  }
 
 const handleName = (e) => {
@@ -38,9 +37,7 @@ const onAdd = (e) => {
     name: newName,
     number: number
   }
-  
   const existingPerson = persons.find((persons) => persons.name === personObject.name )
-
   // made mistakes on if statement -> if(existingPerson.length>0)
   if (existingPerson) {
     alert(`${newName} is already added in phonebook`)
@@ -59,6 +56,8 @@ return (
    />
     <h3>add a new</h3>
     <PersonsForm 
+    newName={newName}
+    number={number}
     handleName={handleName}
     handleNumber={handleNumber}
     onAdd={onAdd}
@@ -68,13 +67,6 @@ return (
     searchFilter={searchFilter}
     filterResult={filterResult}
     />
-    {/* {
-      searchFilter ?
-      <div>{filterResult.map((person, index) => (<li key={index}>{person.name} {person.number}</li>))}</div>
-      : <div>{persons.map((person, index) => (<li key={index}>{person.name} {person.number}</li>)
-        )} </div>
-
-    } */}
   </div>
 )
 }
